@@ -62,6 +62,22 @@ def create_project():
 def view_projects():
     return render_template('view_projects.html')
 
+@app.route('/p2p_lending', methods=["GET", "POST"])
+def p2p_lending():
+    return render_template('p2p_lending.html')
+
+@app.route('/request_a_loan', methods=["GET", "POST"])
+def request_a_loan():
+    return render_template('request_a_loan.html')
+
+@app.route('/fund_a_loan', methods=["GET", "POST"])
+def fund_a_loan():
+    return render_template('fund_a_loan.html')
+
+@app.route('/repay_a_loan', methods=["GET", "POST"])
+def repay_a_loan():
+    return render_template('repay_a_loan.html')
+
 @app.route('/my_projects', methods=["GET", "POST"])
 def my_projects():
     if 'wallet_address' not in session:

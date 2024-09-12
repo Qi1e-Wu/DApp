@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request a Loan - P2P Lending</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<style>
+    body {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        padding-top: 50px;
+    }
+    .navbar {
+        background: linear-gradient(135deg, #6a11cb, #2575fc);
+        position: fixed;
+        align-content: baseline;
+        top: 0;
+        width: 100%;
+        z-index: 1000; 
+    }
+    .navbar-brand {
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center; 
+    }
+    .navbar-nav .nav-item {
+        display: flex;
+        align-items: center; 
+    }
+
+    .request-fund-container {
+        background: linear-gradient(to bottom right, #ffffff, #f1f1f1); /* 添加渐变背景 */
+        padding: 40px;
+        border-radius: 15px; /* 更大的圆角 */
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15), 0 16px 32px rgba(0, 0, 0, 0.05); /* 添加更柔和的多重阴影 */
+        width: 100%;
+        max-width: 500px; /* 设置容器宽度 */
+        text-align: center;
+        border: 1px solid rgba(0, 0, 0, 0.1); /* 添加轻微的边框 */
+        position: relative; /* 设置定位，为装饰元素做准备 */
+        overflow: hidden; /* 隐藏溢出 */
+    }
+
+    .request-fund-container h2 {
+        margin-bottom: 30px;
+        font-weight: bold; /* 加粗标题 */
+        color: #333; /* 改变标题颜色 */
+    }
+
+    .form-group {
+        margin-bottom: 20px; /* 添加底部间距 */
+        text-align: left; /* 标签左对齐 */
+    }
+
+    .form-group label {
+        display: block; /* 标签块显示，位于输入框上方 */
+        margin-bottom: 5px; /* 标签和输入框之间的间距 */
+        font-weight: bold; /* 标签加粗 */
+    }
+
+    .form-control {
+        border-radius: 30px; /* 改变输入框的圆角 */
+        border: 1px solid #ddd; /* 更淡的边框颜色 */
+        padding: 10px 15px; /* 增加内边距 */
+        width: 100%; /* 输入框宽度 */
+    }
+
+    .form-control:focus {
+        box-shadow: 0 0 8px rgba(33, 150, 243, 0.5); /* 输入框获得焦点时的阴影效果 */
+        border-color: #2196f3; /* 输入框获得焦点时的边框颜色 */
+    }
+
+    .btn-primary, .btn-secondary {
+        width: 100%;
+        border-radius: 30px; /* 圆角按钮 */
+        background: linear-gradient(135deg, #6a11cb, #2575fc); /* 渐变按钮 */
+        border: none; /* 去掉边框 */
+        padding: 10px 15px; /* 增加按钮的内边距 */
+        font-size: 1.1rem; /* 增大按钮字体 */
+        margin-bottom: 15px; /* 按钮之间的间距 */
+    }
+
+    .btn-secondary {
+        background: linear-gradient(135deg, #f5af19, #f12711); /* 第二个按钮的不同渐变色 */
+    }
+
+    .btn-primary:hover, .btn-secondary:hover {
+        background: linear-gradient(135deg, #2575fc, #6a11cb); /* 悬停时反向渐变 */
+    }
+
+</style>
+<body>
+    <div class="request-fund-container">
+        <h1>Request a Loan</h1>
+        <form id="loanRequestForm">
+            <div class="form-group">
+                <label for="amount">Loan Amount (ETH):</label>
+                <input type="number" class="form-control" id="amount" placeholder="Enter amount in ETH" required>  
+            </div>
+
+            <div class="form-group">
+                <label for="interestRate">Interest Rate (%):</label>
+                <input type="number" class="form-control" id="interestRate" placeholder="Enter interest rate" required>
+            </div>
+
+            <div class="form-group">
+                <label for="duration">Duration (days):</label>
+                <input type="number" class="form-control" id="duration" placeholder="Enter duration in days" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Request Loan</button>
+        </form>
+        <form action="/dashboard" method="post">
+            <button type="submit" class="btn btn-secondary">Back to Dashboard</button>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
