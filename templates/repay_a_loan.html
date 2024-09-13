@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request a Loan - P2P Lending</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
+</head>
+<style>
+    /* 设置背景图片样式 */
+    #loadingSpinner {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.5); /* 50%透明度的背景 */
+        z-index: 9999; /* 最高优先级 */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #loadingSpinner img {
+        width: 50px;
+        height: 50px;
+        animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+
+    body {
+        background-image: url('images/background.jpg'); /* 本地图片路径 */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        color: #fff;
+    }
+
+    .project-card {
+        border: 1px solid #e3e3e3;
+        padding: 20px;
+        box-sizing: border-box;
+        border-radius: 10px;
+        transition: transform 0.2s, box-shadow 0.2s;
+        min-height: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background-color: rgba(255, 255, 255, 0.9); /* 背景颜色默认值（将被动态替换） */
+    }
+
+    .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .project-card h5 {
+        color: #fff;
+        font-weight: bold;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        border-radius: 50px;
+        padding: 10px 20px;
+        font-size: 14px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .card-text {
+        color: #fff;
+        line-height: 1.6;
+    }
+
+    /* 导航栏样式 */
+    .navbar {
+        background-color: #343a40; /* 深色背景 */
+    }
+
+    .navbar .nav-link {
+        color: white; /* 链接颜色 */
+    }
+</style>
+<body>
+    <h1>My Loans</h1>
+    <div class="container mt-4">
+        <h2 class="mb-4 text-center" style="color: #fff;">View Projects</h2>
+        <div class="row" id="loanDetailsGrid"></div> 
+        <div id="loadingSpinner" style="display: none;">
+            <img src="{{url_for('static', filename='Wait.gif')}}" alt="Loading..." />
+        </div>
+    <div class="d-flex justify-content-center mt-4">
+        <form action="/p2p_lending" method="post">
+            <input type="submit" value="Back to P2P Main Page" class="btn" style="background: linear-gradient(135deg, #6a11cb, #2575fc); color: white; border: none; padding: 10px 20px; border-radius: 50px; cursor: pointer;">
+        </form>
+    </div>
+    </div>
+</body>
+<script src="{{url_for('static', filename='app.js')}}"></script>

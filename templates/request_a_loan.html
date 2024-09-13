@@ -7,6 +7,31 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <style>
+    #loadingSpinner {
+        position: fixed;
+        align-self: center;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.5); /* 50%透明度的背景 */
+        z-index: 9999; /* 最高优先级 */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #loadingSpinner img {
+        width: 50px;
+        height: 50px;
+        animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+
     body {
         min-height: 100vh;
         display: flex;
@@ -95,7 +120,12 @@
 
 </style>
 <body>
+
     <div class="request-fund-container">
+        <div id="loadingSpinner" style="display: none;">
+            <!-- 可以使用一个简单的CSS动画或者加载GIF图 -->
+            <img src="{{url_for('static', filename='Wait.gif')}}" alt="Loading..." />
+        </div>
         <h1>Request a Loan</h1>
         <form id="loanRequestForm">
             <div class="form-group">
@@ -114,12 +144,12 @@
             </div>
             <button type="submit" class="btn btn-primary">Request Loan</button>
         </form>
-        <form action="/dashboard" method="post">
-            <button type="submit" class="btn btn-secondary">Back to Dashboard</button>
+        <form action="/p2p_lending" method="post">
+            <button type="submit" class="btn btn-secondary">Back to Lending Page</button>
         </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.min.js"></script>
-    <script src="app.js"></script>
+    <script src="{{url_for('static', filename='app.js')}}"></script>
 
 </body>
 </html>
