@@ -62,6 +62,10 @@ def create_project():
 def view_projects():
     return render_template('view_projects.html')
 
+@app.route('/transfer_money', methods=["GET", "POST"])
+def transfer_money():
+    return render_template('transfer_money.html')
+
 @app.route('/p2p_lending', methods=["GET", "POST"])
 def p2p_lending():
     return render_template('p2p_lending.html')
