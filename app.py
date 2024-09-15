@@ -52,15 +52,6 @@ def dashboard():
         return redirect(url_for('login'))
     return render_template('dashboard.html')
 
-@app.route('/create_project', methods=['GET', 'POST'])
-def create_project():
-    if 'wallet_address' not in session:
-        return redirect(url_for('login'))
-    return render_template('create_project.html', wallet_address=session['wallet_address'])
-
-@app.route('/view_projects', methods=["GET", "POST"])
-def view_projects():
-    return render_template('view_projects.html')
 
 @app.route('/transfer_money', methods=["GET", "POST"])
 def transfer_money():
@@ -82,15 +73,6 @@ def fund_a_loan():
 def repay_a_loan():
     return render_template('repay_a_loan.html')
 
-@app.route('/my_projects', methods=["GET", "POST"])
-def my_projects():
-    if 'wallet_address' not in session:
-        return redirect(url_for('login'))
-    return render_template('my_projects.html', wallet_address=session['wallet_address'])
-
-@app.route('/donate/<int:project_id>', methods=["GET", "POST"])
-def donate(project_id):
-    return render_template('donate.html', project_id=project_id)
 
 if __name__ == '__main__':
     with app.app_context():
